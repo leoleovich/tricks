@@ -4,7 +4,7 @@
 ## sed
 
 Replace \n in any system
-```
+```bash
 sed -e ':a;N;$!ba;s/\n//g;s/0d0a/\n/g'
 ```
 

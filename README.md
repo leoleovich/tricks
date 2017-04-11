@@ -23,8 +23,13 @@ iptables -A OUTPUT -j REJECT
 ```
 
 ## ssh
+### Forward to localhost
 ```
 ssh -v -L 127.0.0.1:1527:127.0.0.1:1527 server
+```
+### Forward through one more server
+```
+ssh -L 8080:real_server:8080 control
 ```
 
 # Packages

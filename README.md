@@ -128,6 +128,12 @@ Kill old/slow query
 select * from pg_stat_activity order BY xact_start limit 10;
 select pg_terminate_backend(16796);
 ```
+
+Get list of tables 
+```
+psql sonar -tXAqc "select relname from pg_catalog.pg_class where relkind = 'r' and relnamespace=2200"  | cat
+```
+
 ## Rabbitmq
 
 Clear policies

@@ -128,7 +128,12 @@ Kill old/slow query
 select * from pg_stat_activity order BY xact_start limit 10;
 select pg_terminate_backend(16796);
 ```
+## Rabbitmq
 
+Clear policies
+```
+rabbitmqctl list_vhosts -q | while read q ; do rabbitmqctl list_policies -q -p $q | while read p ; do echo "${p}" | awk '{print $2}' | while read c ; do rabbitmqctl clear_policy -p $q "${c}" ; done ; done ; done
+```
 # Virtualization
 # KVM
 

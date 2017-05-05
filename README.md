@@ -67,7 +67,7 @@ apt-cache policy nginx
 ## Htpasswd
 Generate crypt password for htpasswd
 ```bash
-openssl passwd -apr1 targeting # md5
+openssl passwd -apr1 12345 # md5
 openssl passwd -crypt 12345 # crypt (only up to 8 chars will be there)
 ```
 

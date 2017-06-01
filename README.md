@@ -84,6 +84,11 @@ Analyse pcap
 ```bash
 tshark -T fields -e ip.src -r web03.out.pcap  | sort | uniq -c
 ```
+## Tcpdump
+Top hosts connecting
+```bash
+tcpdump -p -r ddos.pcap | awk '{print $3}' | sort | uniq -c | sort -n
+```
 
 # Filesystem
 ## Permissions

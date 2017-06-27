@@ -22,6 +22,12 @@ iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -j REJECT
 ```
 
+Redirect everything from specific host to another port on localhost
+```
+iptables -t nat -A PREROUTING -s <from>/32 -p tcp --dport 80 -j DNAT --to-destination <to>:42424
+```
+if you are using localhost ip as destination, you must enable `sysctl -w net.ipv4.conf.eth0.route_localnet=1`
+
 ## ssh
 ### Forward to localhost
 ```

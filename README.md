@@ -14,6 +14,17 @@ Find all files changed in the interval
 find ./ -newermt 2015-07-20 ! -newermt 2015-07-28
 ```
 
+## bash
+Be sure the line contains at the end
+```
+oleg="hello.ending"
+echo ${^${oleg}%%.ending}".ending"
+hello.ending
+oleg="hello"
+echo ${^${oleg}%%.ending}".ending"
+hello.ending
+```
+
 ## iptables
 
 Block every outgoing connection

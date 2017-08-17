@@ -52,6 +52,9 @@ ssh -v -L 127.0.0.1:1527:127.0.0.1:1527 server
 ssh -L 8080:real_server:8080 control
 ```
 
+## Apply patch
+patch -p1 --dry-run < debian/patches/02_socket_maxconn.patch
+
 # Packages
 ## Build
 
@@ -75,6 +78,15 @@ Rebuld pip to deb:
 package='Flask-Profile-0.2'
 py2dsc -m 'Oleg Obleukhov <leoleovich@something>' ./${package}.tar.gz && cd deb_dist/${package} && DEB_BUILD_OPTIONS=nocheck debuild -i -us -uc -b
 ```
+
+## Rebuild from source
+wget http://http.debian.net/debian/pool/main/d/dbus/dbus_${SHORT_VERSION}.orig.tar.gz -O ${WORKDIR}/dbus.orig.tar.gz
+wget http://http.debian.net/debian/pool/main/d/dbus/dbus_${version}.debian.tar.xz -O ${WORKDIR}/dbus.debian.tar.xz
+tar -xzf dbus.orig.tar.gz
+tar -xf dbus.debian.tar.xz -C dbus-${SHORT_VERSION}
+# update changelog
+cd ${WORKDIR}/dbus-${SHORT_VERSION}
+debuild -b -uc -us
 
 ## Installation
 
